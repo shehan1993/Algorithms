@@ -1,0 +1,94 @@
+public class LinkedListQueue {
+
+    
+    
+    private class Node{
+
+        Node next;
+        int value;
+    }
+
+    private Node head;
+    private int size;
+
+    public LinkedListQueue(){
+        head = null;
+        size = 0;
+
+    }
+
+    public void enQueue(int value){
+        if(head == null){
+            head = new Node();
+            head.value = value;
+        }else{
+
+            Node newNode = new Node();
+            newNode.value = value;
+
+            Node temp = head;
+
+            while(temp.next != null){
+                temp = temp.next;
+            }
+
+            temp.next = newNode;
+
+        }
+        size++;
+
+    }
+
+    private void printQueue(Node nexts){
+        if(nexts != null){
+            System.out.print(nexts.value + " ");
+            printQueue(nexts.next);
+        }
+
+    }
+
+    public void travelQueue(){
+        printQueue(head);
+    }
+
+    public void deQueue(){
+        if(head != null){
+            size--;
+           Node temp = head;
+           head = head.next;
+           System.out.println(temp.value);
+        }else{
+            System.out.println("Empty Queue");
+        }
+
+    }
+
+    public int getSize(){
+        return size;
+    }
+
+    public static void main(String args []){
+        LinkedListQueue llq = new LinkedListQueue();
+        llq.enQueue(0);
+        llq.enQueue(1);
+        llq.enQueue(2);
+        llq.enQueue(3);
+
+        System.out.println("size: " + llq.getSize());
+        llq.travelQueue();
+        System.out.println();
+        llq.deQueue();
+
+        System.out.println("size: " + llq.getSize());
+        llq.travelQueue();
+        System.out.println();
+        System.out.println("size: " + llq.getSize());
+        llq.deQueue();
+        llq.travelQueue();
+        System.out.println();
+        System.out.println("size: " + llq.getSize());
+        llq.deQueue();
+        llq.travelQueue();
+    }
+
+}
